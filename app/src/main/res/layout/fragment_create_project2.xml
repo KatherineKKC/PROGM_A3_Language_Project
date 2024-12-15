@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:id="@+id/fc_create_project2_fragment"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/fondo_create_project"
+      tools:context=".ui.CreateProject2Fragment">
+
+     <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="316dp"
+           android:layout_height="569dp"
+           android:layout_marginStart="50dp"
+           android:layout_marginTop="100dp"
+           android:layout_marginEnd="50dp"
+           android:layout_marginBottom="100dp"
+           android:background="@color/backgraound_new_peoject_card"
+           android:paddingBottom="50dp">
+
+          <TextView
+                android:id="@+id/tv_title_calendar"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:background="@color/school_bus_yellow"
+                android:fontFamily="serif"
+                android:text="@string/tv_star_date"
+                android:textAlignment="center"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+          <TextView
+                android:id="@+id/tv_duration"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:background="@color/school_bus_yellow"
+                android:padding="5dp"
+                android:text="@string/ed_duration_project"
+                android:textAlignment="center"
+                android:textColor="@color/backgraound_new_peoject_card"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/et_duration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.588"
+                app:layout_constraintStart_toStartOf="parent" />
+
+          <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:layout_marginBottom="77dp"
+                android:background="@color/school_bus_yellow"
+                android:padding="5dp"
+                android:text="@string/ed_duration_project"
+                android:textAlignment="center"
+                android:textColor="@color/backgraound_new_peoject_card"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner_language"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_duration"
+                tools:text="@string/tv_language" />
+
+          <EditText
+                android:id="@+id/et_date"
+                android:layout_width="282dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="53dp"
+                android:background="@color/bg_box_project"
+                android:ems="10"
+                android:hint="@string/et_date"
+                android:inputType="date"
+                android:textColor="@color/deep_pink"
+                android:textColorHint="@color/color_text_hint"
+                app:layout_constraintBottom_toTopOf="@+id/tv_duration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.222"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_calendar" />
+
+          <Spinner
+                android:id="@+id/spinner_language"
+                android:layout_width="282dp"
+                android:layout_height="53dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/bg_box_project"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_language" />
+
+          <EditText
+                android:id="@+id/et_duration"
+                android:layout_width="219dp"
+                android:layout_height="77dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="62dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="33dp"
+                android:ems="10"
+                android:hint="@string/ed_hour"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textColor="@color/colorOnPrimary"
+                android:textColorHint="@color/material_dynamic_neutral80"
+                android:textSize="38sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_language"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_duration" />
+
+     </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

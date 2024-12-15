@@ -1,0 +1,31 @@
+<resources>
+     <string name="app_name">DefinitiveProjecy</string>
+     <string name="hello_blank_fragment">Hello blank fragment</string>
+     <string name="tv_priority">Priority</string>
+     <string name="tv_dates">Date</string>
+     <string name="tv_name_project">Name Project</string>
+     <string name="tv_duration_project">Duration Project</string>
+     <string name="tv_language">Language</string>
+     <string name="tv_delete_project">Delete Project</string>
+     <string name="btn_delete_project">Delete Project</string>
+     <string name="tv_name_projects">Name Project</string>
+     <string name="description_btn_statr">start\n</string>
+     <string name="et_password">Password\n</string>
+     <string name="et_user">User</string>
+     <string name="et_name_project">Nombre del proyecto</string>
+     <string name="et_description_projec">Descripción\n</string>
+     <string name="descripcion">Descripcion\n</string>
+     <string name="description_name">Nombre del proyecto</string>
+     <string name="chec_medium">Medium\n</string>
+     <string name="check_heigh">Heigh</string>
+     <string name="et_description_name_projec">Caja para introducir el nombre del proyecto</string>
+     <string name="tv_star_date">Fecha de incio\n</string>
+     <string name="ed_duration_project">Tiempo a emplear</string>
+     <string name="et_date">Fecha</string>
+     <string name="ed_hour">Hours</string>
+     <string name="btn_create_project">Crear proyecto</string>
+     <string name="btn_create_pro">Crear proyecto</string>
+     <string name="tv_detail">Detalle\n</string>
+     <string name="tv_detail_pro">Detalle</string>
+     <string name="btn_next">Siguiente\n</string>
+</resources>

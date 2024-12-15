@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:id="@+id/new_graph"
+      app:startDestination="@id/createProject1Fragment">
+     <fragment
+           android:id="@+id/createProject1Fragment"
+           android:name="com.katherinekurokawa.definitiveprojecy.ui.CreateProject1Fragment"
+           android:label="fragment_create_project1"
+           tools:layout="@layout/fragment_create_project1" >
+          <action
+                android:id="@+id/action_createProject1Fragment_to_createProject2Fragment"
+                app:destination="@id/createProject2Fragment" />
+     </fragment>
+     <fragment
+           android:id="@+id/createProject2Fragment"
+           android:name="com.katherinekurokawa.definitiveprojecy.ui.CreateProject2Fragment"
+           android:label="fragment_create_project2"
+           tools:layout="@layout/fragment_create_project2" >
+          <action
+                android:id="@+id/action_createProject2Fragment_to_createProject3Fragment"
+                app:destination="@id/createProject3Fragment" />
+     </fragment>
+     <fragment
+           android:id="@+id/createProject3Fragment"
+           android:name="com.katherinekurokawa.definitiveprojecy.ui.CreateProject3Fragment"
+           android:label="fragment_create_project3"
+           tools:layout="@layout/fragment_create_project3" />
+</navigation>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="purple_200">#FFBB86FC</color>
+     <color name="purple_500">#FF6200EE</color>
+     <color name="purple_700">#FF3700B3</color>
+     <color name="teal_200">#FF03DAC5</color>
+     <color name="teal_700">#FF018786</color>
+     <color name="black">#FF000000</color>
+     <color name="white">#FFFFFFFF</color>
+
+     <color name="colorPrimary">#FF5722</color>
+     <color name="colorPrimaryVariant">#E64A19</color>
+     <color name="colorOnPrimary">#FFFFFF</color>
+
+     <!-- Secondary Colors -->
+     <color name="colorSecondary">#D32F2F</color>
+     <color name="colorSecondaryVariant">#B71C1C</color>
+     <color name="colorOnSecondary">#FFFFFF</color>
+
+     <color name="school_bus_yellow">#FFDF00</color>
+     <color name="deep_pink">#FF1891</color>
+     <color name="palatinate_blue">#0235FF</color>
+     <color name="texto_hint">#716E6EFF</color>
+     <color name="color_fond_card_new_project" />
+     <color name="backgraound_new_peoject_card">#CA001E2C</color>
+     <color name="color_text_hint">#8AFEF7F7</color>
+     <color name="bg_box_project">#ABAD045D</color>
+</resources>

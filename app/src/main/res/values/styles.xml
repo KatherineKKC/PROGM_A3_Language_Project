@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <style name="Theme.Espana.Custome" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+          <!-- Primary brand color -->
+          <item name="colorPrimary">@color/colorPrimary</item>
+          <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+          <item name="colorOnPrimary">@color/colorOnPrimary</item>
+
+          <!-- Secondary brand color -->
+          <item name="colorSecondary">@color/colorSecondary</item>
+          <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+          <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+          <!-- Status bar color -->
+          <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+     </style>
+
+     <style name="CustomDatePickerDialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+
+
+          <item name="android:windowBackground">@color/black</item>
+          <!-- Encabezado rosa -->
+          <item name="colorPrimary">@color/school_bus_yellow</item>
+
+          <!-- Texto en blanco -->
+          <item name="android:textColorPrimary">@color/white</item>
+          <item name="android:textColorSecondary">@color/white</item>
+     </style>
+
+</resources>
