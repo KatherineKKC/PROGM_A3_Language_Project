@@ -14,9 +14,10 @@ class CreateProjectActivity : AppCompatActivity() {
         _binding = ActivityCreateProjectBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
     }
 
-    fun getCollectedData(nameProject:String , description:String,priority: String): List<String> {
+    public fun getCollectedData(nameProject:String , description:String,priority: String): List<String> {
         return listOf(nameProject, description, priority)
     }
 }

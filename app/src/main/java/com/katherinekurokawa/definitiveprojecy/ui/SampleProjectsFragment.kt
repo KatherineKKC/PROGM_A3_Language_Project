@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isEmpty
+import androidx.core.view.isVisible
 import com.katherinekurokawa.definitiveprojecy.databinding.FragmentSampleProjectsBinding
 
 
@@ -18,6 +20,14 @@ class SampleProjectsFragment : Fragment() {
     ): View? {
         _binding = FragmentSampleProjectsBinding.inflate(inflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (binding.rcProjects.isEmpty()){
+            binding.tvMessageProject.isVisible = true
+        }
     }
 
 

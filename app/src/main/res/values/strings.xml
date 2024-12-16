@@ -28,4 +28,6 @@
      <string name="tv_detail">Detalle\n</string>
      <string name="tv_detail_pro">Detalle</string>
      <string name="btn_next">Siguiente\n</string>
+     <string name="btn_next_fragment">Next\n</string>
+     <string name="tv_message_project">Upps aún no tienes ningún proyecto, para crear un proyecto necesitas crear un Lenguaje</string>
 </resources>

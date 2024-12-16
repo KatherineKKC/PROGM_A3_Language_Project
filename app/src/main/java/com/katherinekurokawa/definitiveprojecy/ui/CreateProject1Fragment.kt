@@ -41,27 +41,33 @@ class CreateProject1Fragment : Fragment() {
         }
 
 
+        binding.btnNext.setOnClickListener{
+            validationData(nameProject,description,priority)
+        }
+
+
+
+
     }
 
     private fun validationData(nameProject: String, description: String, priority: String) {
-        val message = arguments?.getBoolean("dataProject") ?:false
-        val fragmentFinal = CreateProject3Fragment()
+
+        val fragmentNext = CreateProject2Fragment()
         val args = Bundle()
 
         if (nameProject.isNullOrBlank() && description.isNullOrBlank() && priority.isNullOrBlank()) {
             Toast.makeText(requireContext(), "Debes llenar todos los campos", Toast.LENGTH_SHORT).show()
         }else{
-              val intent = Intent(requireContext(), CreateProjectActivity::class.java)
-              intent.putExtra("nameProject", nameProject)
-              intent.putExtra("description", description)
-              intent.putExtra("priority", priority)
-
+            args.putString("nameProject", nameProject)
+            args.putString("description", description)
+            args.putString("priority", priority)
+            fragmentNext.arguments = args
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fc_create_project1_fragment, fragmentNext)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
         }
-        fragmentFinal.arguments = args
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fc_create_project1_fragment, fragmentFinal)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit()
+
     }
 
 

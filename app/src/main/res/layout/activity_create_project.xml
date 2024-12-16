@@ -18,18 +18,4 @@
            app:layout_constraintTop_toTopOf="parent"
            app:navGraph="@navigation/new_graph" />
 
-     <com.google.android.material.floatingactionbutton.FloatingActionButton
-           android:id="@+id/fbtn_next"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="645dp"
-           android:layout_marginBottom="30dp"
-           android:clickable="true"
-           android:contentDescription="@string/btn_next"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintHorizontal_bias="0.901"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
-           app:srcCompat="@android:drawable/dialog_holo_light_frame" />
 </androidx.constraintlayout.widget.ConstraintLayout>

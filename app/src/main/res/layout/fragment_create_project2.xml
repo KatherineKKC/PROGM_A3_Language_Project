@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       android:id="@+id/fc_create_project2_fragment"
@@ -9,6 +9,7 @@
       tools:context=".ui.CreateProject2Fragment">
 
      <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/constraintLayout"
            android:layout_width="316dp"
            android:layout_height="569dp"
            android:layout_marginStart="50dp"
@@ -16,7 +17,14 @@
            android:layout_marginEnd="50dp"
            android:layout_marginBottom="100dp"
            android:background="@color/backgraound_new_peoject_card"
-           android:paddingBottom="50dp">
+           android:paddingBottom="50dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="1.0"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_bias="0.0">
+
 
           <TextView
                 android:id="@+id/tv_title_calendar"
@@ -32,7 +40,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
           <TextView
                 android:id="@+id/tv_duration"
@@ -129,4 +136,18 @@
 
      </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+     <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/btn_next2"
+           android:layout_width="138dp"
+           android:layout_height="wrap_content"
+           android:clickable="true"
+           android:contentDescription="@string/btn_next_fragment"
+           android:src="@android:drawable/dialog_holo_light_frame"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.954"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_bias="0.954" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
