@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.katherinekurokawa.definitiveprojecy.databinding.ActivitySampleProjectsBinding
+import com.katherinekurokawa.definitiveprojecy.R
 
 class SampleProjectsActivity : AppCompatActivity() {
     private lateinit var _binding: ActivitySampleProjectsBinding
@@ -12,9 +13,13 @@ class SampleProjectsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySampleProjectsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnCreateLanguage.setOnClickListener {
+
+
+        binding.toolbar.setNavigationOnClickListener {
             navigateToCreateLangage()
         }
+
+
 
         binding.btnCreateProject.setOnClickListener{
             navigatToCreateProject()

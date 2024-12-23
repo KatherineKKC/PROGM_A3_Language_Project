@@ -17,4 +17,18 @@ interface LanguageDao {
     // Obtener todos los lenguajes
     @Query("SELECT * FROM language")
     suspend fun getAllLanguages(): List<Language>
+
+    @Query("SELECT COUNT(*) > 0 FROM language WHERE name = :nameLanguageParameter")
+    suspend fun languageExist(nameLanguageParameter: String): Boolean
+
+
+    @Query("SELECT * FROM language WHERE name = :nameLanguageParameter")
+    suspend fun getLanguage(nameLanguageParameter: String): Language
+
+
+    @Query("SELECT * FROM language WHERE name = :idLanguageParameter")
+    suspend fun getLanguageWithId(idLanguageParameter: Int): Language
+
+    @Delete
+    suspend fun deleteLanguage(languageRemove :Language)
 }

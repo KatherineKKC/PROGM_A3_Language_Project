@@ -18,29 +18,18 @@
            app:layout_constraintTop_toTopOf="parent" />
 
      <androidx.appcompat.widget.Toolbar
-           android:id="@+id/toolbar"
-           android:layout_width="0dp"
-           android:layout_height="wrap_content"
-           android:background="?attr/colorPrimary"
-           android:minHeight="?attr/actionBarSize"
-           android:theme="?attr/actionBarTheme"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent" />
-
-     <com.google.android.material.floatingactionbutton.FloatingActionButton
-           android:id="@+id/btn_create_language"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:clickable="true"
-           android:contentDescription="Boton para crear lenguaje"
-           app:backgroundTint="#00E75050"
-           app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintHorizontal_bias="0.988"
-           app:layout_constraintStart_toStartOf="@+id/toolbar"
-           app:layout_constraintTop_toTopOf="parent"
-           app:srcCompat="@android:drawable/stat_sys_upload" />
+         android:id="@+id/toolbar"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:background="?attr/colorPrimary"
+         android:minHeight="?attr/actionBarSize"
+         android:padding="20dp"
+         android:pointerIcon="zoom_in"
+         android:theme="?attr/actionBarTheme"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:navigationIcon="@android:drawable/ic_media_next" />
 
      <com.google.android.material.floatingactionbutton.FloatingActionButton
            android:id="@+id/btn_create_project"
