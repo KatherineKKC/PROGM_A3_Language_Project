@@ -95,7 +95,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.533"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_duration" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_priority" />
 
           <CheckBox
                 android:id="@+id/cb_medium"
@@ -138,7 +138,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cb_medium" />
 
           <TextView
-                android:id="@+id/tv_duration"
+                android:id="@+id/tv_priority"
                 android:layout_width="282dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="42dp"

@@ -13,8 +13,9 @@ import com.katherinekurokawa.definitiveprojecy.databinding.ItemLanguagesBinding
 import com.katherinekurokawa.definitiveprojecy.entities.Language
 
 class LanguageAdapter(
-    private var listLanguage: MutableList<Language>,
-    private val onItemLongClick: (String) -> Unit
+    var listLanguage: MutableList<Language>,
+    private val onItemLongClick: (String) -> Unit,
+    private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<LanguageAdapter.LanguageHolder>() {
 
 
@@ -34,7 +35,7 @@ class LanguageAdapter(
         }
 
         holder.binding.root.setOnClickListener{
-            onItemLongClick(language.name)
+            onItemClick(language.name)
             true
         }
 
@@ -51,6 +52,13 @@ class LanguageAdapter(
 
     //FUNCIONES PARA EL ADAPTER
 
+    fun modifyLanguageName(languageModify :Language){
+        val position = listLanguage.indexOfFirst { it.idLanguage == languageModify.idLanguage }
+        if(position != -1){
+            listLanguage[position] = languageModify
+            notifyItemChanged(position)
+        }
+    }
 
     fun submitLanguage(newList: List<Language>) {
         val diffCallback = LanguageDifutil(listLanguage, newList)

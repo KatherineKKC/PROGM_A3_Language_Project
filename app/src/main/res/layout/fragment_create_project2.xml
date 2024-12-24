@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
           <TextView
-                android:id="@+id/tv_duration"
+                android:id="@+id/tv_priority"
                 android:layout_width="282dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
@@ -92,7 +92,7 @@
                 android:inputType="date"
                 android:textColor="@color/deep_pink"
                 android:textColorHint="@color/color_text_hint"
-                app:layout_constraintBottom_toTopOf="@+id/tv_duration"
+                app:layout_constraintBottom_toTopOf="@+id/tv_priority"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.222"
                 app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +132,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tv_language"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_duration" />
+                app:layout_constraintTop_toTopOf="@+id/tv_priority" />
 
      </androidx.constraintlayout.widget.ConstraintLayout>
 

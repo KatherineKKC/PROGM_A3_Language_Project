@@ -1,6 +1,8 @@
 package com.katherinekurokawa.definitiveprojecy.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,9 @@ import com.katherinekurokawa.definitiveprojecy.databinding.FragmentCreateProject
 import com.katherinekurokawa.definitiveprojecy.entities.Project
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class CreateProject3Fragment : Fragment() {
@@ -29,20 +34,31 @@ class CreateProject3Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val nameProject = arguments?.getString("nameProject").orEmpty()
-        val description = arguments?.getString("description").orEmpty()
-        val priority = arguments?.getString("priority").orEmpty()
-        val date = arguments?.getString("date").orEmpty()
-        val durationParse = arguments?.getString("duration").orEmpty()
-        val languageId = arguments?.getInt("languageId") ?: 0
-        val detailProject = binding.etDetailPro.text.toString()
-        val duration = durationParse.toDoubleOrNull() ?: 0.0
+        application = requireActivity().application as MyApplicaction
 
 
 
         binding.btnCreateProject.setOnClickListener {
-            createProject(nameProject,description,priority,date,duration,languageId,detailProject)
+            val nameProject = arguments?.getString("nameProject").orEmpty()
+            val description = arguments?.getString("description").orEmpty()
+            val priority = arguments?.getString("priority").orEmpty()
+            val formateDate = arguments?.getString("date").orEmpty()
+            val duration= arguments?.getString("duration").orEmpty()
+            val languageId = arguments?.getInt("languageId") ?: 0
+            val detailProject = binding.etDetailPro.text.toString()
+
+            val date  = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
+                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(formateDate)!!
+            )
+
+
+
+            if (detailProject.isBlank()){
+                Toast.makeText(requireContext(), "Debes poner los detalles del proyecto", Toast.LENGTH_SHORT).show()
+            }else{
+                createProject(nameProject,description,priority,date,duration,languageId,detailProject)
+            }
+
         }
 
     }
@@ -50,18 +66,14 @@ class CreateProject3Fragment : Fragment() {
 
     private fun createProject(
         nameProject: String, description: String, priority: String, date: String,
-        duration: Double, languageId: Int, detailProject: String
+        duration: String, languageId: Int, detailProject: String
     ) {
-        if (nameProject.isNullOrEmpty() || description.isNullOrEmpty() || priority.isNullOrEmpty() ||
-            date.isNullOrEmpty() || languageId <= 0 || detailProject.isNullOrEmpty()
-        ) {
-            Toast.makeText(requireContext(), "Debes llenar todos los campos", Toast.LENGTH_SHORT).show()
-        } else {
+
             lifecycleScope.launch(Dispatchers.IO) {
                 val id = 0
                 try {
                     val app = application as MyApplicaction
-                    val projectNew = app.room.projectDao().addProject(
+                    app.room.projectDao().addProject(
                         Project(
                             idProject = id,
                             nameProject = nameProject,
@@ -73,17 +85,22 @@ class CreateProject3Fragment : Fragment() {
                             detailProject = detailProject
                         )
                     )
-                    Toast.makeText(requireContext(), "Proyecto creado", Toast.LENGTH_SHORT).show()
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(requireContext(), "Proyecto creado", Toast.LENGTH_SHORT).show()
+                        navigateToInitActivity()
+                    }
                 } catch (e: Exception) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error al crear el project",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Log.e("El error del projecto", "Es ${e.message}")
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(requireContext(), "Error al crear el project", Toast.LENGTH_SHORT).show()
+                        navigateToInitActivity()
+                    }
                 }
             }
-        }
+    }
 
-
+    private fun navigateToInitActivity() {
+        val intent = Intent(requireContext(), SampleProjectsActivity::class.java)
+        startActivity(intent)
     }
 }

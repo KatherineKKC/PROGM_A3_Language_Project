@@ -51,7 +51,8 @@ class CreateLanguage2Fragment : Fragment() {
     private fun createLanguage(nameLanguage :String){
         lifecycleScope.launch(Dispatchers.IO){
             try{
-              val languageOld = applicaction.room.languageDao().languageExist(nameLanguage)
+
+              var languageOld = applicaction.room.languageDao().languageExist(nameLanguage)
                 withContext(Dispatchers.Main){
                     if(languageOld){
                         Toast.makeText(requireContext(), "El lenguaje ya existe, Introduzca otro nombre", Toast.LENGTH_SHORT).show()

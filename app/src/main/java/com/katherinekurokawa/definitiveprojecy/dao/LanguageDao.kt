@@ -29,6 +29,14 @@ interface LanguageDao {
     @Query("SELECT * FROM language WHERE name = :idLanguageParameter")
     suspend fun getLanguageWithId(idLanguageParameter: Int): Language
 
+
+    @Query("DELETE  FROM language ")
+    suspend fun delleteAllLanguages()
+
+
+    @Update
+    suspend fun updateName(newLanguage : Language)
+
     @Delete
     suspend fun deleteLanguage(languageRemove :Language)
 }

@@ -14,7 +14,7 @@ data class Project(
     val description: String,
     val priority: String,
     val data: String,
-    val hours: Double,
+    val hours: String,
     val languageId: Int,
     val detailProject: String
 
@@ -26,5 +26,5 @@ data class ProjectWithLanguage(
         parentColumn = "languageId",
         entityColumn = "idLanguage"
     )
-    val language: Language
+    val language: Language?
 )

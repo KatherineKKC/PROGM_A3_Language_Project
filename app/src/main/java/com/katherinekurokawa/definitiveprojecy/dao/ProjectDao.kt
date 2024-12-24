@@ -1,6 +1,7 @@
 package com.katherinekurokawa.definitiveprojecy.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
@@ -13,10 +14,12 @@ interface ProjectDao {
     @Insert
     suspend fun addProject(project: Project)
 
-    //obtenemos la relacion de proyecto lenguaje
     @Transaction
     @Query("SELECT * FROM project")
     suspend fun getProjectsWithLanguages(): List<ProjectWithLanguage>
+
+    @Query("DELETE  FROM project ")
+    suspend fun delleteAllLprojects()
 
 
 }

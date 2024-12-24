@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_createLanguageFragment_to_createLanguage2Fragment"
             app:destination="@id/createLanguage2Fragment" />
+        <action
+            android:id="@+id/action_createLanguageFragment_to_modifyLanguageFragment"
+            app:destination="@id/modifyLanguageFragment" />
     </fragment>
     <fragment
         android:id="@+id/createLanguage2Fragment"
@@ -21,6 +24,15 @@
         tools:layout="@layout/fragment_create_language2" >
         <action
             android:id="@+id/action_createLanguage2Fragment_to_createLanguageFragment"
+            app:destination="@id/createLanguageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/modifyLanguageFragment"
+        android:name="com.katherinekurokawa.definitiveprojecy.ui.ModifyLanguageFragment"
+        android:label="fragment_modify_language"
+        tools:layout="@layout/fragment_modify_language" >
+        <action
+            android:id="@+id/action_modifyLanguageFragment_to_createLanguageFragment"
             app:destination="@id/createLanguageFragment" />
     </fragment>
 </navigation>

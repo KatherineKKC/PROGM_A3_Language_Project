@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.fragment.findNavController
 import com.katherinekurokawa.definitiveprojecy.databinding.FragmentCreateProject1Binding
 import com.katherinekurokawa.definitiveprojecy.R
 
@@ -30,18 +31,35 @@ class CreateProject1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val nameProject = binding.etNamePro.text.toString().orEmpty()
-        val description = binding.etDetailPro.text.toString().orEmpty()
+
         val check1 = binding.cbLow
         val check2 = binding.cbMedium
         val check3 = binding.cbHigh
+
         var priority : String = ""
+
         verifyChecks(check1, check2, check3) { selectdPriority ->
             priority = selectdPriority
         }
 
-
         binding.btnNext.setOnClickListener{
+            val nameProject = binding.etNamePro.text.toString().orEmpty().trim()
+            val description = binding.etDetailPro.text.toString().orEmpty()
+
+
+            if (nameProject.isBlank()){
+                Toast.makeText(requireContext(), "Debes establecer un nombre al proyecto", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if(description.isBlank()){
+                Toast.makeText(requireContext(), "Debes poner una descripción mínima", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(priority.isBlank()){
+                Toast.makeText(requireContext(), "Elije una prioridad", Toast.LENGTH_SHORT).show()
+               return@setOnClickListener
+            }
             validationData(nameProject,description,priority)
         }
 
@@ -51,21 +69,14 @@ class CreateProject1Fragment : Fragment() {
     }
 
     private fun validationData(nameProject: String, description: String, priority: String) {
-
-        val fragmentNext = CreateProject2Fragment()
-        val args = Bundle()
-
         if (nameProject.isNullOrBlank() && description.isNullOrBlank() && priority.isNullOrBlank()) {
             Toast.makeText(requireContext(), "Debes llenar todos los campos", Toast.LENGTH_SHORT).show()
         }else{
+            val args = Bundle()
             args.putString("nameProject", nameProject)
             args.putString("description", description)
             args.putString("priority", priority)
-            fragmentNext.arguments = args
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fc_create_project1_fragment, fragmentNext)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit()
+            findNavController().navigate(R.id.action_createProject1Fragment_to_createProject2Fragment, args)
         }
 
     }
