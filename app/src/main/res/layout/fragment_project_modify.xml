@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_create_project"
+    tools:context=".ui.ProjectModifyFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="50dp"
+        android:layout_marginBottom="61dp"
+        app:cardBackgroundColor="@color/backgraound_new_peoject_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title_modify_project"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="@color/school_bus_yellow"
+                android:hint="@string/et_name_pro_modify"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/backgraound_new_peoject_card"
+                android:textColorHint="@color/backgraound_new_peoject_card"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_description_modify"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="@string/tv_desrip"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/deep_pink"
+                android:textColorHint="@color/bg_box_project" />
+
+            <TextView
+                android:id="@+id/tv_date_modify_prog"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="@string/tv_date_modi"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/deep_pink"
+                android:textColorHint="@color/bg_box_project"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_priority_modify"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:padding="10dp"
+                android:text="@string/tv_priority"
+                android:textColor="@color/school_bus_yellow"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <CheckBox
+                    android:id="@+id/cb_low_modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/texto_hint"
+                    android:button="@null"
+                    android:text="@string/chec_low"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorOnPrimary" />
+
+                <CheckBox
+                    android:id="@+id/cb_medium_modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/texto_hint"
+                    android:button="@null"
+                    android:text="@string/check_media"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorOnPrimary" />
+
+                <CheckBox
+                    android:id="@+id/cb_heigh_modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/texto_hint"
+                    android:button="@null"
+                    android:text="@string/check_alta"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorOnPrimary" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv_duration_modify"
+                    android:layout_width="236dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_time_mod"
+                    android:textColor="@color/school_bus_yellow"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_duration_modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="62dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="150"
+                    android:inputType="text"
+                    android:textColor="@color/deep_pink"
+                    android:textColorHint="@color/bg_box_project" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv_language_modify"
+                    android:layout_width="322dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_language"
+                    android:textColor="@color/school_bus_yellow"
+                    android:textSize="18sp" />
+
+                <Spinner
+                    android:id="@+id/spinnerModifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_detail_modify"
+                android:layout_width="match_parent"
+                android:layout_height="104dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/ed_detail_modifyq"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/deep_pink"
+                android:textColorHint="@color/bg_box_project"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_modify"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/btn_modify_pro"
+                android:textColor="@color/backgraound_new_peoject_card"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

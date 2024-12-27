@@ -37,4 +37,17 @@
     <string name="btn_text_create_lang">Crear lenguage\n</string>
     <string name="tv_message_lang">Aún no tienes ningún lenguaje creado</string>
     <string name="btn_modify">Modificar\n</string>
+    <string name="tv_desrip">Desripcion</string>
+    <string name="et_name_pro_modify">Nombre del projecto</string>
+    <string name="tv_date_modi">"Fecha de inicio "</string>
+    <string name="check_low">Bajo\n</string>
+    <string name="tv_time_mod">Tiempo a emplear</string>
+    <string name="ed_detail_modifyq">"Aquí puedes especificar las caracteristicas del proyecto "</string>
+    <string name="btn_modify_pro">Guardar cambios</string>
+    <string name="che_medium">Media\n</string>
+    <string name="check_alta">Alta</string>
+    <string name="chec_low">Baja</string>
+    <string name="tv_name_lang_mod">Java</string>
+    <string name="tv_medium_check" />
+    <string name="check_media">Media</string>
 </resources>

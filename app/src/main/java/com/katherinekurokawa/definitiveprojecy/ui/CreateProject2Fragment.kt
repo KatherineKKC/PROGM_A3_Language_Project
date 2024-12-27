@@ -32,6 +32,7 @@ class CreateProject2Fragment : Fragment() {
     private val binding: FragmentCreateProject2Binding get() = _binding
     private lateinit var applicaction: MyApplicaction
     private lateinit var languageList: List<Language>
+    private  val  args3 = Bundle()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,18 +62,20 @@ class CreateProject2Fragment : Fragment() {
         showSpinner()
 
         val spinner :Spinner = binding.spinnerLanguage
-        var languageId:Int? = null
+
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Verifica que la lista no esté vacía y el índice sea válido
                 if (::languageList.isInitialized && position >= 0 && position < languageList.size) {
-                    val selectedLanguage = languageList[position]
-                    languageId = selectedLanguage.idLanguage // Obtén el ID del lenguaje
-                    Log.e("LENGUAJE ID", "$languageId ES ESTE ")
-                } else {
-                    languageId = -1 // Valor predeterminado si no hay lenguajes válidos
-                    Log.e("LENGUAJE ID", "No se seleccionó un lenguaje válido")
+                   val  selectedLanguage  = languageList[position]
+                     val idLang = selectedLanguage.idLanguage
+                    if(idLang ==-1){
+                        Toast.makeText(requireContext(), "no se obtuvo el id del lenguaje seleccionado", Toast.LENGTH_SHORT).show()
+                    }else{
+                        args3.putInt("languageId", idLang)
+                    }
                 }
             }
 
@@ -99,13 +102,10 @@ class CreateProject2Fragment : Fragment() {
                 Toast.makeText(requireContext(), "Debes establecer una duración", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (languageId == -1){
-                Toast.makeText(requireContext(), "Elige un lenguaje", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
 
 
-            validationData(date, duration, languageId )
+
+            validationData(date, duration)
         }
 
 
@@ -114,6 +114,25 @@ class CreateProject2Fragment : Fragment() {
 
 
     //FUNCIONES
+
+
+    private fun validationData(date: String, duration: String) {
+
+
+            val nameProject = arguments?.getString("nameProject").toString()
+            val description = arguments?.getString("description").toString()
+            val priority = arguments?.getString("priority").toString()
+
+            args3.putString("nameProject", nameProject)
+            args3.putString("description", description)
+            args3.putString("priority", priority)
+            args3.putString("message", "Los datos son incompletos")
+            args3.putString("date", date)
+            args3.putString("duration", duration)
+
+          findNavController().navigate(R.id.action_createProject2Fragment_to_createProject3Fragment, args3)
+    }
+
 
 
     private fun showSpinner() {
@@ -148,29 +167,6 @@ class CreateProject2Fragment : Fragment() {
                 }
             }
         }
-    }
-
-
-
-    private fun validationData(date: String, duration: String,languageId:Int?) {
-        val args3 = Bundle()
-
-
-            val nameProject = arguments?.getString("nameProject").toString()
-            val description = arguments?.getString("description").toString()
-            val priority = arguments?.getString("priority").toString()
-
-            args3.putString("nameProject", nameProject)
-            args3.putString("description", description)
-            args3.putString("priority", priority)
-            args3.putString("message", "Los datos son incompletos")
-            args3.putString("date", date)
-            args3.putString("duration", duration)
-            args3.putString("laguageId", languageId.toString())
-          findNavController().navigate(R.id.action_createProject2Fragment_to_createProject3Fragment, args3)
-
-
-
     }
 
 

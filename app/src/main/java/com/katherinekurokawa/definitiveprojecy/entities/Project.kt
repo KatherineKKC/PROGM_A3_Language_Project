@@ -12,11 +12,11 @@ data class Project(
     val idProject: Int,
     val nameProject: String,
     val description: String,
-    val priority: String,
+    var priority: String,
     val data: String,
-    val hours: String,
-    val languageId: Int,
-    val detailProject: String
+    var hours: String,
+    var languageId: Int,
+    var detailProject: String
 
 )
 

@@ -2,21 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/modify_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_create_project"
     tools:context=".ui.SampleProjectsActivity">
-
-     <androidx.fragment.app.FragmentContainerView
-         android:id="@+id/fv_proyects"
-         android:name="com.katherinekurokawa.definitiveprojecy.ui.SampleProjectsFragment"
-         android:layout_width="0dp"
-         android:layout_height="0dp"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent" />
 
      <androidx.appcompat.widget.Toolbar
          android:id="@+id/toolbar"
@@ -47,4 +37,16 @@
          app:layout_constraintTop_toTopOf="parent"
          app:layout_constraintVertical_bias="0.936"
          app:srcCompat="@android:drawable/ic_menu_add" />
+
+     <androidx.fragment.app.FragmentContainerView
+         android:id="@+id/nav_host_recycler_modify"
+         android:name="androidx.navigation.fragment.NavHostFragment"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         app:defaultNavHost="true"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:navGraph="@navigation/graph_modifier" />
 </androidx.constraintlayout.widget.ConstraintLayout>

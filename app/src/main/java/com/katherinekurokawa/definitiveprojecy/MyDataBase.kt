@@ -9,7 +9,7 @@ import com.katherinekurokawa.definitiveprojecy.entities.Language
 import com.katherinekurokawa.definitiveprojecy.entities.Project
 import com.katherinekurokawa.definitiveprojecy.entities.User
 
-@Database(entities = [Project::class, User::class, Language::class], version = 4)
+@Database(entities = [Project::class, User::class, Language::class], version = 5)
 abstract  class MyDataBase : RoomDatabase(){
     abstract fun projectDao(): ProjectDao
     abstract fun userDao(): UserDao

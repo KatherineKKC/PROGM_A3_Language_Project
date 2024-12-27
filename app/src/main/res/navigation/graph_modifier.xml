@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_modifier"
+    app:startDestination="@id/sampleProjectsFragment">
+
+    <fragment
+        android:id="@+id/sampleProjectsFragment"
+        android:name="com.katherinekurokawa.definitiveprojecy.ui.SampleProjectsFragment"
+        android:label="fragment_sample_projects"
+        tools:layout="@layout/fragment_sample_projects" >
+        <action
+            android:id="@+id/action_sampleProjectsFragment_to_projectModifyFragment"
+            app:destination="@id/projectModifyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectModifyFragment"
+        android:name="com.katherinekurokawa.definitiveprojecy.ui.ProjectModifyFragment"
+        android:label="fragment_project_modify"
+        tools:layout="@layout/fragment_project_modify" >
+        <action
+            android:id="@+id/action_projectModifyFragment_to_sampleProjectsFragment"
+            app:destination="@id/sampleProjectsFragment" />
+    </fragment>
+</navigation>

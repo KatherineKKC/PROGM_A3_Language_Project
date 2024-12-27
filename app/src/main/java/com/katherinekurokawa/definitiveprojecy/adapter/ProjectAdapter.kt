@@ -9,7 +9,10 @@ import com.katherinekurokawa.definitiveprojecy.databinding.ItemProjectsBinding
 import com.katherinekurokawa.definitiveprojecy.entities.Project
 import com.katherinekurokawa.definitiveprojecy.entities.ProjectWithLanguage
 
-class ProjectAdapter(var listProject :MutableList<ProjectWithLanguage>): RecyclerView.Adapter<ProjectAdapter.ProjectHolder>() {
+class ProjectAdapter(
+    private var listProject :MutableList<ProjectWithLanguage>,
+    private val btnOnItemClick: (Int)-> Unit,
+    private val onItemClickModify:(Int)-> Unit) : RecyclerView.Adapter<ProjectAdapter.ProjectHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemProjectsBinding.inflate(inflater, parent, false)
@@ -22,11 +25,34 @@ class ProjectAdapter(var listProject :MutableList<ProjectWithLanguage>): Recycle
         holder.binding.tvDurationProject.text =project.project.hours
         holder.binding.tvDateProject.text =project.project.data
         holder.binding.tvPriority.text =project.project.priority
-        holder.binding.tvLanguageItem.text =project.project.languageId.toString()
+        holder.binding.tvLanguageItem.text = project.language?.name.toString()
+
+        holder.binding.btnDeleteProject.setOnClickListener{
+            btnOnItemClick(project.project.idProject)
+        }
+        holder.binding.root.setOnClickListener{
+            onItemClickModify(project.project.idProject)
+        }
     }
+
 
     override fun getItemCount(): Int {
         return listProject.size
+    }
+
+    fun updateProject(projectModifier : Int){
+        val projectModifier = listProject.indexOfFirst { it.project.idProject == projectModifier }
+        if(projectModifier != -1){
+            notifyItemChanged(projectModifier)
+        }
+    }
+    fun deleteProject( projectToRemove: Int){
+
+        val idToRemove =listProject.indexOfFirst { it.project.idProject == projectToRemove }
+        if (idToRemove != -1 ){
+            listProject.removeAt(idToRemove)
+            notifyItemRemoved(idToRemove)
+        }
     }
 
     fun submitList(newListProject: List<ProjectWithLanguage>){
@@ -37,6 +63,7 @@ class ProjectAdapter(var listProject :MutableList<ProjectWithLanguage>): Recycle
         difResult.dispatchUpdatesTo(this)
 
     }
+
 
     inner class ProjectHolder(val binding : ItemProjectsBinding): RecyclerView.ViewHolder(binding.root){}
 }

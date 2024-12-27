@@ -71,6 +71,7 @@ class CreateProject3Fragment : Fragment() {
 
             lifecycleScope.launch(Dispatchers.IO) {
                 val id = 0
+
                 try {
                     val app = application as MyApplicaction
                     app.room.projectDao().addProject(
