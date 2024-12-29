@@ -111,7 +111,6 @@ class SampleProjectsFragment : Fragment() {
                             findNavController().navigate(R.id.action_sampleProjectsFragment_to_projectModifyFragment,bundle)
                             Toast.makeText(requireContext(), "El id del lenguaje es ${projectToModify.language?.idLanguage}", Toast.LENGTH_SHORT).show()
 
-
                         }
 
                 } catch (e: Exception) {

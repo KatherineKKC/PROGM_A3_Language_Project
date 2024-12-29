@@ -33,6 +33,7 @@ class ProjectModifyFragment : Fragment() {
     private lateinit var languageList: List<Language>
     private var selectedLanguage: Int? = null
 
+
     //Vista
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentProjectModifyBinding.inflate(inflater)
@@ -56,15 +57,10 @@ class ProjectModifyFragment : Fragment() {
         val date = arguments?.getString("date").orEmpty().trim()
         val priority = arguments?.getString("priority").orEmpty().trim()
         val duration = arguments?.getString("duration").orEmpty().trim()
-        val language = arguments?.getInt("language", -1)
         val detailProject = arguments?.getString("detail").orEmpty().trim()
+        val languageId = arguments?.getString("language").orEmpty().trim()
 
 
-
-        // 2. Mostrar los datos del proyecto en la UI
-        if (language == -1) {
-            showProject(nameProject, description, date, priority, duration, detailProject, language)
-        }
 
         // 3. Configurar los CheckBoxes para el nivel de prioridad
         var priorityToModify = ""
@@ -92,6 +88,11 @@ class ProjectModifyFragment : Fragment() {
 
         // 5. Cargar los lenguajes en el Spinner
         showSpinner()
+
+
+        // 2. Mostrar los datos del proyecto en la UI
+            showProject(nameProject, description, date, priority, duration, detailProject,languageId)
+
 
         // 6. Enviar los datos modificados cuando se presione el botón
         binding.btnModify.setOnClickListener {
@@ -139,6 +140,9 @@ class ProjectModifyFragment : Fragment() {
     }
 
     private fun showSpinner() {
+        val idLanguageGet = arguments?.getString("language").orEmpty().trim()
+
+
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 // Obtener los lenguajes de la base de datos
@@ -153,18 +157,7 @@ class ProjectModifyFragment : Fragment() {
                 }
 
                 withContext(Dispatchers.Main) {
-                    // Aquí seleccionamos el lenguaje recibido en los argumentos
-                    val languageId = arguments?.getInt("language", -1)
-                    if (languageId != -1) {
-                        // Encontrar la posición del lenguaje en la lista
-                        val languagePosition = languageList.indexOfFirst { it.idLanguage == languageId }
-                        if (languagePosition != -1) {
-                            // Seleccionar el idioma correspondiente en el Spinner
-                            if (languageId != null) {
-                                binding.spinnerModifier.setSelection(languageId)
-                            }
-                        }
-                    }
+
                     // Configurar el adaptador del Spinner
                     val adapter = ArrayAdapter(
                         requireContext(),
@@ -172,8 +165,15 @@ class ProjectModifyFragment : Fragment() {
                         languageNames
                     )
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    binding.spinnerModifier.adapter = adapter
+
+                   val idLanguageCurrent = listLanguage.indexOfFirst{ it.idLanguage == idLanguageGet.toInt() }
+                    if (idLanguageCurrent != -1){
+                        binding.spinnerModifier.adapter = adapter
+                        binding.spinnerModifier.setSelection(idLanguageCurrent)
+                    }
+
                 }
+
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Snackbar.make(binding.root, "Error al obtener la lista de lenguajes", Snackbar.LENGTH_SHORT).show()
@@ -183,9 +183,9 @@ class ProjectModifyFragment : Fragment() {
     }
 
     // 10. Función para mostrar los datos del proyecto en los campos
-    private fun showProject(nameProject: String, description: String, date: String, priority: String, duration: String, detailProject: String, language: Int) {
-        if (nameProject.isBlank() || description.isBlank() || date.isBlank() || duration.isBlank() || detailProject.isBlank()) {
-            Toast.makeText(requireContext(), "Los campos recibidos del fragmento están vacíos $language", Toast.LENGTH_SHORT).show()
+    private fun showProject(nameProject: String, description: String, date: String, priority: String, duration: String, detailProject: String, idLang: String) {
+        if (nameProject.isBlank() || description.isBlank() || date.isBlank() || duration.isBlank() || detailProject.isBlank() || idLang.isBlank()) {
+            Toast.makeText(requireContext(), "Los campos recibidos del fragmento están vacíos ", Toast.LENGTH_SHORT).show()
         } else {
 
             // Configurar los CheckBoxes según la prioridad
