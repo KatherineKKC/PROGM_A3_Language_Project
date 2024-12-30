@@ -19,26 +19,29 @@ class LanguageAdapter(
 ) : RecyclerView.Adapter<LanguageAdapter.LanguageHolder>() {
 
 
+    //--------------------------------------------METODOS IMPLEMENTADOS-----------------------------------------------------//
+
+    //1. Inflamos la vista
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemLanguagesBinding.inflate(inflater, parent, false)
         return LanguageHolder(binding)
     }
 
+    // 2. Conectar los elementos
     override fun onBindViewHolder(holder: LanguageHolder, position: Int) {
         val language = listLanguage[position]
         holder.binding.tvNameLanguage.text = language.name
-
+        //Acción para elimminar el lenguaje con click largo
         holder.binding.root.setOnLongClickListener {
             onItemLongClick(language.name)
             true
         }
-
-        holder.binding.root.setOnClickListener{
+        //Acción para modificar el lenguaje con un click
+        holder.binding.root.setOnClickListener {
             onItemClick(language.name)
             true
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -46,24 +49,10 @@ class LanguageAdapter(
     }
 
 
-    inner class LanguageHolder(val binding: ItemLanguagesBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
-
-
-    //FUNCIONES PARA EL ADAPTER
-
-    fun modifyLanguageName(languageModify :Language){
-        val position = listLanguage.indexOfFirst { it.idLanguage == languageModify.idLanguage }
-        if(position != -1){
-            listLanguage[position] = languageModify
-            notifyItemChanged(position)
-        }
-    }
-
+    //--------------------------------------------FUNCIONES-----------------------------------------------------//
     fun submitLanguage(newList: List<Language>) {
         val diffCallback = LanguageDifutil(listLanguage, newList)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
-
         // Actualizamos la lista y notificamos al RecyclerView
         listLanguage.clear()
         listLanguage.addAll(newList)
@@ -78,5 +67,13 @@ class LanguageAdapter(
         }
     }
 
+    fun removeAllLanguage() {
+        listLanguage.clear()
+        notifyDataSetChanged()
+    }
+
+    //--------------------------------------------HOLDER-----------------------------------------------------//
+    inner class LanguageHolder(val binding: ItemLanguagesBinding) :
+        RecyclerView.ViewHolder(binding.root) {}
 
 }

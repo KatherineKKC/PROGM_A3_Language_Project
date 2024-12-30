@@ -1,7 +1,6 @@
 package com.katherinekurokawa.definitiveprojecy.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
@@ -11,7 +10,6 @@ import com.katherinekurokawa.definitiveprojecy.entities.ProjectWithLanguage
 
 @Dao
 interface ProjectDao {
-
     @Insert
     suspend fun addProject(project: Project)
 
@@ -23,7 +21,7 @@ interface ProjectDao {
     suspend fun delleteAllLprojects()
 
     @Query("DELETE  FROM project WHERE idProject =:idProjectParameter ")
-    suspend fun removeProject(idProjectParameter : Int)
+    suspend fun removeProject(idProjectParameter: Int)
 
     @Query("SELECT * FROM project WHERE idProject =:idProjectParameter")
     suspend fun getProjectWithId(idProjectParameter: Int): ProjectWithLanguage

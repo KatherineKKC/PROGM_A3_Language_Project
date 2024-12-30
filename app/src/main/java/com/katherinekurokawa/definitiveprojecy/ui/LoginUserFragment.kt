@@ -24,90 +24,97 @@ import java.io.FileOutputStream
 
 
 class LoginUserFragment : Fragment() {
-   private lateinit var _binding: FragmentLoginUserBinding
+    //------------------------------------------------VARIABLES-----------------------------------------------------//
+    //BINDING
+    private lateinit var _binding: FragmentLoginUserBinding
     private val binding: FragmentLoginUserBinding get() = _binding
-    //Iniciamos la aplicacion para poder acceder a la base de dato
-    private lateinit var application : MyApplicaction
-    private  var currentUser: User? = null
 
-    @SuppressLint("SuspiciousIndentation")
+    //APLICACION
+    private lateinit var application: MyApplicaction
+    private var currentUser: User? = null
+
+    //-------------------------------------------METODOS IMPLEMENTADOS-------------------------------------------------//
+    //INFLATER
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-      _binding = FragmentLoginUserBinding.inflate(inflater)
+        _binding = FragmentLoginUserBinding.inflate(inflater)
         return binding.root
     }
 
+    //LOGICA FRAGMENT
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        video() //Reproducimos el video
 
-        //Cuando se haga click sobre el btn iniciar sesion se enviaran los datos
-        binding.btnLogin.setOnClickListener{
+        //APPLICACION INCIALIZACION
+        application = requireActivity().application as MyApplicaction
+
+        //VIDEO PARA LOGIN
+        video()
+
+        //ACCION PARA HACER LOGIN
+        binding.btnLogin.setOnClickListener {
             val nameUser = binding.etUser.text.toString().trim()
             val passwordUser = binding.etPassword.text.toString().trim()
-            checkUser(nameUser,passwordUser)
+            checkUser(nameUser, passwordUser) //COMPROBAR USUARIO
         }
 
-        binding.btnCreateUser.setOnClickListener{
+        //ACCION PARA NAVEGAR AL FRAGMENTO DE CREAR UN USUARIO NUEVO
+        binding.btnCreateUser.setOnClickListener {
             navigateToCreateUser()
         }
-
-
     }
 
 
-
+    //------------------------------------------------FUNCIONES----------------------------------------------------------//
+    //1. NAVEGAR AL FRAGMENTO PARA CREAR NUEVO USUARIO
     fun navigateToCreateUser() {
         val intent = Intent(requireContext(), CreateUserActivity::class.java)
         startActivity(intent)
-        clean()
-
+        clean() //METODO PARA LIMPIAR LAS CAJAS
     }
 
-    fun navigateToSampleProjectsActivity(){
+    //2. NAVEGAR A LA VISTA PRINCIPAL UNA VEZ SE HA CONFIRMADO EL USUARIO
+    fun navigateToSampleProjectsActivity() {
         val intent = Intent(requireContext(), SampleProjectsActivity::class.java)
         startActivity(intent)
-        clean()
+        clean()//LIMPIAR CAJAS
     }
 
-    //Comprobar si el usuario existe y la contraseña son correctas
-    private fun checkUser(nameUser: String, passwordUser : String){
+    //3. COMPROBAR SI EL USUARIO Y PASSWORD SON CORRECTOS
+    private fun checkUser(nameUser: String, passwordUser: String) {
         lifecycleScope.launch(Dispatchers.IO) {
-             application = requireActivity().application as MyApplicaction
-             val user = application.room.userDao().getUserByNameAndPassword(nameUser,passwordUser)
-            Log.e("Los datos", "Se estan consultando correctamente ")
-
+            val user = application.room.userDao().getUserByNameAndPassword(nameUser, passwordUser)
             withContext(Dispatchers.Main) {
-                if (user!=null) {
-                        currentUser = user
-                        navigateToSampleProjectsActivity()
+                if (user != null) {
+                    currentUser = user
+                    navigateToSampleProjectsActivity()
                     Toast.makeText(requireContext(), "Bienvenid@", Toast.LENGTH_SHORT).show()
-
                 } else {
-                    Toast.makeText(requireContext(), "El usuario no existen y/o los datos no coinciden", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "El usuario no existen y/o los datos no coinciden",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     clean()
                 }
             }
-
-
         }
     }
 
 
-    //funcion para limpiar cajas
-    private fun clean(){
+    //4. LIMPIAR CAJAS DE TEXTO
+    private fun clean() {
         binding.etUser.setText("")
         binding.etPassword.setText("")
     }
 
-
-
-
-    //FUNCION DE VIDEO
-    private fun video(){
-        val inputStream = resources.openRawResource(R.raw.output2ref) // R.raw.salida apunta al archivo en res/raw
+    //MOSTRAR EL VIDEO
+    private fun video() {
+        val inputStream =
+            resources.openRawResource(R.raw.output2ref) // R.raw.salida apunta al archivo en res/raw
         val outputFile = File(requireContext().filesDir, "output2ref.mp4")
         if (!outputFile.exists()) { // Evitar copiar si ya existe
             inputStream.use { input ->
@@ -115,7 +122,6 @@ class LoginUserFragment : Fragment() {
                     input.copyTo(output)
                 }
             }
-
         }
 
         val videoUri = Uri.fromFile(outputFile)
@@ -126,6 +132,5 @@ class LoginUserFragment : Fragment() {
             it.isLooping = true
             binding.vvIntro3.start() // Inicia la reproducción automáticamente
         }
-
     }
 }

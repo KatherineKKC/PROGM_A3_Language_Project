@@ -19,55 +19,81 @@ import com.katherinekurokawa.definitiveprojecy.R
 
 class CreateLanguage2Fragment : Fragment() {
 
+    //---------------------------------------VARIABLES-------------------------------------------//
     private lateinit var _binding: FragmentCreateLanguage2Binding
     private val binding: FragmentCreateLanguage2Binding get() = _binding
 
     //Application
     private lateinit var applicaction: MyApplicaction
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    //---------------------------------------METODOS IMPLEMENTADAS---------------------------------//
+    //INFLATER
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentCreateLanguage2Binding.inflate(inflater)
         return binding.root
     }
 
 
-    //Logica
+    //LOGICA
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //INICIALIZACION DE APLICATION
         applicaction = requireActivity().application as MyApplicaction
 
-        binding.btnCreateLanguages.setOnClickListener{
+        //ACCIONES BOTONES
+        binding.btnCreateLanguages.setOnClickListener {
             val nameLanguage = binding.etNameNewLanguage.text.toString()
-            if(nameLanguage.isEmpty() || nameLanguage.isNullOrBlank()){
-                Toast.makeText(requireContext(), "Introduce el nombre del lenguaje ", Toast.LENGTH_SHORT).show()
-            }else{
+            if (nameLanguage.isEmpty() || nameLanguage.isNullOrBlank()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Introduce el nombre del lenguaje ",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 createLanguage(nameLanguage)
             }
         }
     }
 
-    private fun createLanguage(nameLanguage :String){
-        lifecycleScope.launch(Dispatchers.IO){
-            try{
 
-              var languageOld = applicaction.room.languageDao().languageExist(nameLanguage)
-                withContext(Dispatchers.Main){
-                    if(languageOld){
-                        Toast.makeText(requireContext(), "El lenguaje ya existe, Introduzca otro nombre", Toast.LENGTH_SHORT).show()
-                    }else{
+    //--------------------------------------------FUNCIONES----------------------------------------//
 
+    //1. CREAR LENGUAJE
+    private fun createLanguage(nameLanguage: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val language = applicaction.room.languageDao().getLanguage(nameLanguage)
+                withContext(Dispatchers.Main) {
+                    if (language != null) {
+                        Toast.makeText(
+                            requireContext(),
+                            "El lenguaje ya existe, Introduzca otro nombre",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
                         val language = Language(0, nameLanguage)
                         applicaction.room.languageDao().addLanguage(language)
-                        Toast.makeText(requireContext(), "El lenguaje ha sido creado", Toast.LENGTH_SHORT).show()
-                        navigateToFragment1()
-
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                requireContext(),
+                                "El lenguaje ha sido creado",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            navigateToFragment1()
+                        }
                     }
                 }
-            }catch (e:Exception){
-                withContext(Dispatchers.Main){
-                    Toast.makeText(requireContext(), "Error al crear el lenguaje ${e.message}", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error al crear el lenguaje ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     navigateToInitActivity()
                 }
             }
@@ -75,12 +101,14 @@ class CreateLanguage2Fragment : Fragment() {
     }
 
 
-    private fun navigateToInitActivity(){
+    //2. NAVEGAR A LA ACTIVIDAD PRINCIPAL
+    private fun navigateToInitActivity() {
         val intent = Intent(requireContext(), SampleProjectsActivity::class.java)
         startActivity(intent)
     }
 
-    private fun navigateToFragment1(){
+    //3. NAVEGAR AL FRAGMENTO ANTERIOR PARA VER EL LISTADO DE LENGUAJES / CREAR LENGUAJES
+    private fun navigateToFragment1() {
         findNavController().navigate(R.id.action_createLanguage2Fragment_to_createLanguageFragment)
     }
 

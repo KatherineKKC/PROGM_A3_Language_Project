@@ -18,8 +18,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.katherinekurokawa.definitiveprojecy.MyApplicaction
 import com.katherinekurokawa.definitiveprojecy.R
+import com.katherinekurokawa.definitiveprojecy.adapter.ProjectAdapter
 import com.katherinekurokawa.definitiveprojecy.databinding.FragmentProjectModifyBinding
 import com.katherinekurokawa.definitiveprojecy.entities.Language
+import com.katherinekurokawa.definitiveprojecy.entities.Project
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,6 +34,7 @@ class ProjectModifyFragment : Fragment() {
     private lateinit var applicactionI: MyApplicaction
     private lateinit var languageList: List<Language>
     private var selectedLanguage: Int? = null
+
 
 
     //Vista
@@ -48,17 +51,23 @@ class ProjectModifyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = requireActivity().findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        toolbar?.visibility = View.GONE
+        val btnAdd = requireActivity().findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.btn_create_project)
+        btnAdd?.visibility = View.GONE
+
+
         //Apliacacion
         applicactionI = requireActivity().application as MyApplicaction
 
         // 1. Obtener los datos recibidos desde el intent
+        val idProject = arguments?.getInt("idProject", -1)
         val nameProject = arguments?.getString("nameProject").orEmpty().trim()
         val description = arguments?.getString("description").orEmpty().trim()
         val date = arguments?.getString("date").orEmpty().trim()
         val priority = arguments?.getString("priority").orEmpty().trim()
         val duration = arguments?.getString("duration").orEmpty().trim()
         val detailProject = arguments?.getString("detail").orEmpty().trim()
-        val languageId = arguments?.getString("language").orEmpty().trim()
 
 
 
@@ -91,46 +100,64 @@ class ProjectModifyFragment : Fragment() {
 
 
         // 2. Mostrar los datos del proyecto en la UI
-            showProject(nameProject, description, date, priority, duration, detailProject,languageId)
+            showProject(nameProject, description, date, priority, duration, detailProject)
 
 
         // 6. Enviar los datos modificados cuando se presione el botón
         binding.btnModify.setOnClickListener {
             selectedLanguage?.let {
-                sendDataModifier(
-                    binding.tvTitleModifyProject.text.toString(),
-                    priorityToModify,
-                    binding.etDurationModify.text.toString().trim(),
-                    binding.etDetailModify.text.toString(),
-                    it
-                )
+                if (idProject != null) {
+                    sendDataModifier(
+                        idProject,
+                        nameProject,
+                        description,
+                        date,
+                        priorityToModify,
+                        binding.etDurationModify.text.toString().trim(),
+                        binding.etDetailModify.text.toString(),
+                        it
+                    )
+                }
             }
+            navigateUpToSampleActivity()
         }
     }
 
 
 
 
-    /////////////////////////////////////////////////////FUNCIONES ////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////// /FUNCIONES ////////////////////////////////////////////////////////////////////////
 
 
-    // 7. Función para enviar los datos modificados
-    private fun sendDataModifier(nameProjectM: String, priorityM: String, durationM: String, detailProjectM: String, idLang: Int) {
+    //7. Función para enviar los datos modificados
+    private fun sendDataModifier(idProject: Int , nameProjectM: String, description: String,date: String, priorityM: String, durationM: String, detailProjectM: String, idLang: Int) {
         if (priorityM.isBlank() || durationM.isBlank() || detailProjectM.isBlank() || idLang == -1) {
             navigateUpToSampleActivity()
             Snackbar.make(binding.root, "No se realizó ningún cambio", Snackbar.LENGTH_SHORT).show()
         } else {
-            val bundle = Bundle().apply {
-                putString("nameProject", nameProjectM)
-                putString("priority", priorityM)
-                putString("duration", durationM)
-                putString("detail", detailProjectM)
-                putInt("language", idLang)
+            lifecycleScope.launch(Dispatchers.IO){
+                try {
+                    val projectM = Project(
+                        idProject = idProject,
+                        nameProject = nameProjectM,
+                        description = description,
+                        hours = durationM,
+                        priority = priorityM,
+                        data = date,
+                        languageId = idLang,
+                        detailProject = detailProjectM
+                    )
+                    applicactionI.room.projectDao().updateProject(projectM)
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(requireContext(), "Se actualizó correctamente", Toast.LENGTH_SHORT).show()
+                        navigateUpToSampleActivity()
+                    }
+                }catch (e:Exception){
+                    Log.e("Actualiza", "No se actualizo")
+                }
             }
-            findNavController().navigate(R.id.action_projectModifyFragment_to_sampleProjectsFragment, bundle)
 
-
-        }
+            }
     }
 
 
@@ -142,6 +169,9 @@ class ProjectModifyFragment : Fragment() {
     private fun showSpinner() {
         val idLanguageGet = arguments?.getString("language").orEmpty().trim()
 
+        if (idLanguageGet.isEmpty()){
+            Log.e("Error", "El id del lenguaje recibido es null o vacio")
+        }
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -183,8 +213,8 @@ class ProjectModifyFragment : Fragment() {
     }
 
     // 10. Función para mostrar los datos del proyecto en los campos
-    private fun showProject(nameProject: String, description: String, date: String, priority: String, duration: String, detailProject: String, idLang: String) {
-        if (nameProject.isBlank() || description.isBlank() || date.isBlank() || duration.isBlank() || detailProject.isBlank() || idLang.isBlank()) {
+    private fun showProject(nameProject: String, description: String, date: String, priority: String, duration: String, detailProject: String) {
+        if (nameProject.isBlank() || description.isBlank() || date.isBlank() || duration.isBlank() || detailProject.isBlank() ) {
             Toast.makeText(requireContext(), "Los campos recibidos del fragmento están vacíos ", Toast.LENGTH_SHORT).show()
         } else {
 

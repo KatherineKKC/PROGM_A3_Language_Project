@@ -1,17 +1,16 @@
 package com.katherinekurokawa.definitiveprojecy.Difu
 
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 import com.katherinekurokawa.definitiveprojecy.entities.Language
 
 class LanguageDifutil(
     private val oldList: List<Language>,
-    private val newList: List<Language>) : DiffUtil.Callback() {
+    private val newList: List<Language>
+) : DiffUtil.Callback() {
 
-
+    //--------------------------------------METODOS IMPLEMENTADOS-------------------------------------//
     override fun getOldListSize(): Int {
-      return oldList.size
+        return oldList.size
     }
 
     override fun getNewListSize(): Int {
@@ -23,7 +22,7 @@ class LanguageDifutil(
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return  oldList[oldItemPosition] == newList[newItemPosition]
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 
 }

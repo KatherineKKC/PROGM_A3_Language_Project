@@ -4,7 +4,8 @@ import android.app.Application
 import androidx.room.Room
 
 class MyApplicaction : Application() {
-    lateinit var room : MyDataBase //Instanciamos la DB
+    //INCIAMOS LA DB
+    lateinit var room : MyDataBase
     override fun onCreate() {
         super.onCreate()
         room = Room.databaseBuilder(

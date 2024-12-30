@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      android:id="@+id/fc_create_project1_fragment"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@drawable/fondo_create_project"
-      tools:context=".ui.CreateProject3Fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fc_create_project1_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_create_project"
+    tools:context=".ui.CreateProject3Fragment">
 
-     <!-- TODO: Update blank fragment layout -->
-     <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="316dp"
-           android:layout_height="569dp"
-           android:layout_marginStart="50dp"
-           android:layout_marginTop="100dp"
-           android:layout_marginEnd="50dp"
-           android:layout_marginBottom="100dp"
-           android:background="@color/backgraound_new_peoject_card"
-           android:paddingBottom="50dp">
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="316dp"
+        android:layout_height="569dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="100dp"
+        android:background="@color/backgraound_new_peoject_card"
+        android:paddingBottom="50dp">
 
 
-          <TextView
-                android:id="@+id/tv_title_calendar"
-                android:layout_width="0dp"
-                android:layout_height="55dp"
-                android:background="@color/school_bus_yellow"
-                android:fontFamily="serif"
-                android:text="@string/tv_detail_pro"
-                android:textAlignment="center"
-                android:textSize="34sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/et_detail_pro"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/tv_title_calendar"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:background="@color/school_bus_yellow"
+            android:fontFamily="serif"
+            android:text="@string/tv_detail_pro"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_detail_pro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-          <EditText
-                android:id="@+id/et_detail_pro"
-                android:layout_width="283dp"
-                android:layout_height="268dp"
-                android:layout_margin="30dp"
-                android:background="@color/bg_box_project"
-                android:contentDescription="@string/tv_detail"
-                android:gravity="top|start"
-                android:hint="@string/tv_detail_pro"
-                android:inputType="textMultiLine"
-                android:lines="4"
-                android:maxLines="6"
-                android:minLines="3"
-                android:overScrollMode="always"
-                android:padding="10dp"
-                android:scrollbars="vertical"
-                android:scrollHorizontally="false"
-                android:textColor="@color/deep_pink"
-                android:textColorHint="@color/color_text_hint"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.515"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.501" />
+        <EditText
+            android:id="@+id/et_detail_pro"
+            android:layout_width="283dp"
+            android:layout_height="268dp"
+            android:layout_margin="30dp"
+            android:background="@color/bg_box_project"
+            android:contentDescription="@string/tv_detail"
+            android:gravity="top|start"
+            android:hint="@string/tv_detail_pro"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:maxLines="6"
+            android:minLines="3"
+            android:overScrollMode="always"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textColor="@color/deep_pink"
+            android:textColorHint="@color/color_text_hint"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.501" />
 
-          <Button
-                android:id="@+id/btn_create_project"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="123dp"
-                android:layout_marginTop="102dp"
-                android:layout_marginEnd="103dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/btn_create_pro"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.692"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_detail_pro"
-                app:layout_constraintVertical_bias="0.488" />
+        <Button
+            android:id="@+id/btn_create_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="102dp"
+            android:layout_marginEnd="103dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/btn_create_pro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.692"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_detail_pro"
+            app:layout_constraintVertical_bias="0.488" />
 
-     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

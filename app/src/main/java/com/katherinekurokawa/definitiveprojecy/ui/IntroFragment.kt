@@ -12,25 +12,34 @@ import java.io.File
 import java.io.FileOutputStream
 
 class IntroFragment : Fragment() {
+    //------------------------------------------------VARIABLES-----------------------------------------------------//
+    //BINDING
     private lateinit var _binding: FragmentIntroBinding
     private val binding: FragmentIntroBinding get() = _binding
 
+
+    //-----------------------------------------METODOS IMPLEMENTADOS------------------------------------------------//
+    //INFLATER
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentIntroBinding.inflate(inflater)
         return binding.root
     }
 
+    //LOGICA FRAGMENT
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        video()
+        video()//MOSTRAR EL VIDEO DE INTRODUCCION DE LA APPLICACION
     }
 
 
-    private fun video(){
-        val inputStream = resources.openRawResource(R.raw.output) // R.raw.salida apunta al archivo en res/raw
+    //------------------------------------------------FUNCIONES-----------------------------------------------------//
+    //MOSTRAR VIDEO
+    private fun video() {
+        val inputStream = resources.openRawResource(R.raw.output)
         val outputFile = File(requireContext().filesDir, "output.mp4")
 
         if (!outputFile.exists()) { // Evitar copiar si ya existe
@@ -42,19 +51,14 @@ class IntroFragment : Fragment() {
 
         }
 
-
         val videoUri = Uri.fromFile(outputFile)
-
-        binding.vvIntro.stopPlayback() // Detiene cualquier reproducción anterior
+        binding.vvIntro.stopPlayback()
         binding.vvIntro.setVideoURI(null)
         binding.vvIntro.setVideoURI(videoUri)
 
         binding.vvIntro.setOnPreparedListener {
             it.isLooping = true
-            binding.vvIntro.start() // Inicia la reproducción automáticamente
+            binding.vvIntro.start()
         }
-
     }
-
-
 }

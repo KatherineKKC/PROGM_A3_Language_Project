@@ -8,45 +8,50 @@
     android:background="@drawable/fondo_create_project"
     tools:context=".ui.SampleProjectsActivity">
 
-     <androidx.appcompat.widget.Toolbar
-         android:id="@+id/toolbar"
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:background="?attr/colorPrimary"
-         android:minHeight="?attr/actionBarSize"
-         android:padding="20dp"
-         android:pointerIcon="zoom_in"
-         android:theme="?attr/actionBarTheme"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
-         app:navigationIcon="@android:drawable/ic_media_next" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_recycler_modify"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/graph_modifier" />
 
-     <com.google.android.material.floatingactionbutton.FloatingActionButton
-         android:id="@+id/btn_create_project"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:background="#000000"
-         android:clickable="true"
-         android:contentDescription="Boton para crear proyecto"
-         app:backgroundTint="@color/deep_pink"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintHorizontal_bias="0.915"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
-         app:layout_constraintVertical_bias="0.936"
-         app:srcCompat="@android:drawable/ic_menu_add" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:padding="15dp"
+        android:paddingStart="330dp"
+        android:pointerIcon="top_right_diagonal_double_arrow"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navigationIcon="@android:drawable/ic_menu_send" />
 
-     <androidx.fragment.app.FragmentContainerView
-         android:id="@+id/nav_host_recycler_modify"
-         android:name="androidx.navigation.fragment.NavHostFragment"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         app:defaultNavHost="true"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
-         app:navGraph="@navigation/graph_modifier" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_create_project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:clickable="true"
+        android:contentDescription="Boton para crear proyecto"
+        app:backgroundTint="@color/deep_pink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.936"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

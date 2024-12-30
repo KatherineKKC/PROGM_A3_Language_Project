@@ -6,18 +6,17 @@ import com.katherinekurokawa.definitiveprojecy.databinding.ActivityCreateProject
 
 
 class CreateProjectActivity : AppCompatActivity() {
+    //----------------------------------------VARIABLES------------------------------------------------//
+    //BINDING
     private lateinit var _binding: ActivityCreateProjectBinding
     private val binding: ActivityCreateProjectBinding get() = _binding
 
+
+    //----------------------------------------METODOS IMPLEMENTADOS------------------------------------------------//
+    //VISTA Y LOGICA
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityCreateProjectBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-    }
-
-    public fun getCollectedData(nameProject:String , description:String,priority: String): List<String> {
-        return listOf(nameProject, description, priority)
     }
 }
